@@ -141,6 +141,10 @@ public class Main {
                 } catch (IllegalArgumentException e) {
                     System.out.println("Erro: " + e.getMessage() + " Mantendo valor atual.");
                 }
+
+                if (estadocivil.equals(p.getEstadocivil())) {
+                    break;
+                }
             }
             else {
                 break;
@@ -154,6 +158,7 @@ public class Main {
                 try {
                     java.sql.Date nascimento = java.sql.Date.valueOf(nascimentoStr);
                     p.setNascimento(nascimento);
+                    break;
                 } catch (IllegalArgumentException e) {
                     System.out.println("Erro: " + e.getMessage() + " Mantendo valor atual.");
                 }
@@ -170,6 +175,7 @@ public class Main {
                 try {
                     int altura_cm = Integer.parseInt(alturaStr);
                     p.setAltura_cm(altura_cm);
+                    break;
                 } catch (NumberFormatException e) {
                     System.out.println("Erro: Altura inválida. Mantendo valor atual.");
                 }
@@ -186,6 +192,7 @@ public class Main {
                 try {
                     double peso_kg = Double.parseDouble(pesoStr);
                     p.setPeso_kg(peso_kg);
+                    break;
                 } catch (NumberFormatException e) {
                     System.out.println("Erro: Peso inválido. Mantendo valor atual.");
                 }

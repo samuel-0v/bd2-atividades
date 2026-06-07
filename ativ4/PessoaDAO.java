@@ -2,6 +2,32 @@ import java.sql.*;
 
 public class PessoaDAO {
     public void inserir(Pessoa p) throws Exception {
+        /*
+         PreparedStatement: uso e passagem de parâmetros
+
+         Nesta operação usamos PreparedStatement para prevenir injeção de SQL e
+         aproveitar a pré-compilação da sentença SQL. A string SQL contém
+         placeholders (?) que são substituídos pelos valores dos parâmetros
+         através dos métodos `setX(index, value)` (index 1-based).
+
+         Exemplo de mapeamento das interrogações para parâmetros:
+         1 -> cpf, 2 -> nome, 3 -> estadocivil, 4 -> nascimento,
+         5 -> altura_cm, 6 -> peso_kg
+
+         Para cargas em massa (muitos registros) é recomendável usar batching
+         com PreparedStatement para reduzir round-trips e melhorar performance:
+
+         Connection conn = Conexao.getConnection();
+         conn.setAutoCommit(false);
+         PreparedStatement pstmt = conn.prepareStatement(sql);
+         for (Pessoa p : lista) {
+             // set params...
+             pstmt.addBatch();
+         }
+         pstmt.executeBatch();
+         conn.commit();
+
+        */
         String sql = "INSERT INTO pessoa VALUES (?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = Conexao.getConnection();
